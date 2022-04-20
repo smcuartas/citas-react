@@ -16,6 +16,7 @@ export const Form = styled.form`
         width: 100%;
         padding: 10px 5px;
         box-sizing: border-box;
+        font-size:16px;
     }
 
     & input:not(:last-child){

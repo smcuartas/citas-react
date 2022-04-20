@@ -2,82 +2,82 @@ import {useState, useEffect} from 'react'
 
 import * as S from './styled-form'
 
-function Form({pacientes, setPacientes, paciente, setPaciente}){
-    const [nombre, setNombre] = useState('');
-    const [propietario, setPropietario] = useState ('');
-    const [correo, setCorreo] = useState('');
-    const [fecha, setFecha] = useState('');
-    const [sintomas, setSintomas] = useState('');
+function Form({patients, setPatients, patient, setPatient}){
+    const [name, setName] = useState('');
+    const [owner, setOwner] = useState ('');
+    const [email, setEmail] = useState('');
+    const [date, setDate] = useState('');
+    const [symptoms, setSymptoms] = useState('');
 
     const[error, setError] = useState(false);
 
     useEffect( () => {
-        if( Object.keys(paciente).length > 0){
-            pacientes.map( edit => {
-                if(edit.id == paciente){
-                    setNombre(edit.nombre)
-                    setPropietario(edit.propietario)
-                    setCorreo(edit.correo)
-                    setFecha(edit.fecha)
-                    setSintomas(edit.sintomas)
+        if( Object.keys(patient).length > 0){
+            patients.map( edit => {
+                if(edit.id == patient){
+                    setName(edit.name)
+                    setOwner(edit.owner)
+                    setEmail(edit.email)
+                    setDate(edit.date)
+                    setSymptoms(edit.symptoms)
                 }
             })
         }
-    }, [paciente])
+    }, [patient])
 
-    const generarId = () => {
+    const generateId = () => {
         const random = Math.random().toString(20).substring(2)
-        const fecha = Date.now().toString(20)
+        const date = Date.now().toString(20)
 
-        return random + fecha
+        return random + date
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // form validation
-        if([nombre, propietario, correo, fecha, sintomas].includes('')){
+        if([name, owner, email, date, symptoms].includes('')){
             setError(true);
         } else{
             setError(false);
 
-            const Paciente = {nombre, propietario, correo, fecha, sintomas, id: generarId()}
-            setPacientes([...pacientes, Paciente]);
+            const Patient = {name, owner, email, date, symptoms, id: generateId()}
+            setPatients([...patients, Patient]);
 
-            setNombre('')
-            setPropietario('')
-            setCorreo('')
-            setFecha('')
-            setSintomas('')
+            setName('')
+            setOwner('')
+            setEmail('')
+            setDate('')
+            setSymptoms('')
         }
 
-        if(paciente && paciente.length){
-            pacientes.map( editPaciente => {
-                if(editPaciente.id == paciente){
-                    const editarPaciente = {nombre, propietario, correo, fecha, sintomas, id: paciente}
-                    setPacientes([editarPaciente])
+        if(patient && patient.length){
+            patients.map( editPatient => {
+                if(editPatient.id == patient){
+                    const editPatient = {name, owner, email, date, symptoms, id: patient}
+                    setPatients([editPatient])
                 }
             })
 
-            setPaciente('')
+            setPatient('')
         }
     }
 
     return(
         <div className="formCol">
             <S.FormCol>
-                <h2>Añadir pacientes</h2>
-                <p>Añade tus pacientes y adminístralos</p>
+                <h2>Add patients</h2>
+                <p>Add your patients and manage them.</p>
 
                 <S.Form onSubmit={handleSubmit}>
-                    {error && (<S.InputError>Todos los campos son obligatorios</S.InputError>)}
-                    <input type="text" placeholder="Nombre de la mascota" onChange={ e => setNombre(e.target.value)} value={nombre} />
-                    <input type="text" placeholder="Nombre del propietario" onChange={ e => setPropietario(e.target.value) } value={propietario} />
-                    <input type="email" placeholder="Correo electrónico" onChange={ e => setCorreo(e.target.value) } value={correo} />
-                    <label>Fecha de alta</label>
-                    <input type="date" onChange={ e => setFecha(e.target.value) } value={fecha} />
-                    <textarea placeholder="Síntomas del paciente" rows="5" onChange={ e => setSintomas(e.target.value) } value={sintomas} />
-                    <button type="submit">{paciente && paciente.length ? 'Editar paciente' : 'Agregar paciente'}</button>
+                    {error && (<S.InputError>All fields are required</S.InputError>)}
+                    <input type="text" placeholder="Nombre de la mascota" onChange={ e => setName(e.target.value)} value={name} />
+                    <input type="text" placeholder="Nombre del propietario" onChange={ e => setOwner(e.target.value) } value={owner} />
+                    <input type="email" placeholder="Correo electrónico" onChange={ e => setEmail(e.target.value) } value={email} />
+                    <label>Discharge date</label>
+                    <input type="date" onChange={ e => setDate(e.target.value) } value={date} />
+                    <textarea placeholder="Patient symptoms" rows="5" onChange={ e => setSymptoms(e.target.value) } value={symptoms} />
+                    <input type="submit" value={patient && patient.length ? 'Edit patient' : 'Add patient'} />
                 </S.Form>
             </S.FormCol>
         </div>

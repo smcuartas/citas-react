@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import Header from './Components/Header/Header'
 import Form from './Components/Form/Form'
 import Patients from './Components/Patients/Patients'
@@ -6,25 +7,25 @@ import Patients from './Components/Patients/Patients'
 import GlobalCSS from './Components/Global/global-styled'
 
 function App() {
-  const [pacientes, setPacientes] = useState([]);
-  const [paciente, setPaciente] = useState({});
+  const [patients, setPatients] = useState([]);
+  const [patient, setPatient] = useState({});
 
   useEffect(() => {
-    const obtenerLocalStorage = () => {
-      const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? []
-      setPacientes(pacientesLS)
+    const getLocalStorage = () => {
+      const patientsLS = JSON.parse(localStorage.getItem('patients')) ?? []
+      setPatients(patientsLS)
     }
 
-    obtenerLocalStorage()
+    getLocalStorage()
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('pacientes', JSON.stringify(pacientes))
-  }, [pacientes])
+    localStorage.setItem('patients', JSON.stringify(patients))
+  }, [patients])
 
-  const eliminarPaciente = (id) => {
-    const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id);
-    setPacientes(pacientesActualizados)
+  const deletePatient = (id) => {
+    const updatedPatients = patients.filter( patient => patient.id !== id);
+    setPatients(updatedPatients)
   }
 
   return (
@@ -32,22 +33,22 @@ function App() {
       <GlobalCSS />
 
       <Header
-        title = 'Citas veterinaria'
-        subtitle = 'Gestor de Pacientes'
+        title = 'Vet Appointments'
+        subtitle = 'Patient Manager'
       />
 
       <div className="cols2">
         <Form
-          pacientes = {pacientes}
-          setPacientes = {setPacientes}
-          paciente={paciente}
-          setPaciente={setPaciente}
+          patients = {patients}
+          setPatients = {setPatients}
+          patient={patient}
+          setPatient={setPatient}
         />
 
         <Patients
-          pacientes = {pacientes}
-          setPaciente = {setPaciente}
-          eliminarPaciente = {eliminarPaciente}
+          patients = {patients}
+          setPatient = {setPatient}
+          deletePatient = {deletePatient}
         />
       </div>
     </>

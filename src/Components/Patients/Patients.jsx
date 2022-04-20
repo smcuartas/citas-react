@@ -2,25 +2,25 @@ import Patient from './Patient'
 
 import * as S from './styled-patients'
 
-function Patients({pacientes, setPaciente, eliminarPaciente}){
+function Patients({patients, setPatient, deletePatient}){
     return(
         <div className="patients">
             <S.PatientHeader>
-                <h2>Pacientes</h2>
-                <p>{pacientes && pacientes.length ? 'Administra tus pacientes y citas' : 'Aún no has añadido pacientes'}</p>
+                <h2>Patients</h2>
+                <p>{patients && patients.length ? "Manage your patients and appointments" : "You have'nt added patients yet"}</p>
             </S.PatientHeader>
 
-            {pacientes.map( (paciente) => (
+            {patients.map( obj => (
                 <Patient
-                    key={paciente.id}
-                    id={paciente.id}
-                    nombre={paciente.nombre}
-                    propietario={paciente.propietario}
-                    correo={paciente.correo}
-                    fecha={paciente.fecha}
-                    sintomas={paciente.sintomas}
-                    setPaciente={setPaciente}
-                    eliminarPaciente={eliminarPaciente}
+                    key={obj.id}
+                    id={obj.id}
+                    name={obj.name}
+                    owner={obj.owner}
+                    email={obj.email}
+                    date={obj.date}
+                    symptoms={obj.symptoms}
+                    setPatient={setPatient}
+                    deletePatient={deletePatient}
                 />
             ) )}
         </div>

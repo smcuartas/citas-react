@@ -1,10 +1,10 @@
 import * as S from './styled-patients'
 
-function Patient({id, nombre, propietario, correo, fecha, sintomas, setPaciente, eliminarPaciente}){
-    const handleEliminar = () => {
-        const respuesta = confirm('¿Estás seguro que deseas eliminar al paciente ' + nombre + '?')
-        if(respuesta){
-            eliminarPaciente(id)
+function Patient({id, name, owner, email, date, symptoms, setPatient, deletePatient}){
+    const handleDelete = () => {
+        const response = confirm("Are you sure you want to delete " + name + "'s register?")
+        if(response){
+            deletePatient(id)
         } else{
             return;
         }
@@ -15,28 +15,33 @@ function Patient({id, nombre, propietario, correo, fecha, sintomas, setPaciente,
                 <S.IDPatient>ID: {id}</S.IDPatient>
 
                 <p>
-                    <S.BoldTxt>Nombre:</S.BoldTxt> {nombre}
+                    <S.BoldTxt>Name:</S.BoldTxt> {name}
                 </p>
 
                 <p>
-                    <S.BoldTxt>Propietario:</S.BoldTxt> {propietario}
+                    <S.BoldTxt>Owner:</S.BoldTxt> {owner}
                 </p>
 
                 <p>
-                    <S.BoldTxt>Correo electrónico:</S.BoldTxt> {correo}
+                    <S.BoldTxt>Email:</S.BoldTxt> {email}
                 </p>
 
                 <p>
-                    <S.BoldTxt>Fecha de alta:</S.BoldTxt> {fecha}
+                    <S.BoldTxt>Discharge date:</S.BoldTxt> {date}
                 </p>
 
                 <p>
-                    <S.BoldTxt>Síntomas del paciente:</S.BoldTxt> {sintomas}
+                    <S.BoldTxt>Patient symptoms:</S.BoldTxt> {symptoms}
                 </p>
 
                 <S.ButtonArea>
-                    <S.Edit value="Editar" onClick={() => setPaciente(id)} />
-                    <S.Delete value="Eliminar" onClick={handleEliminar} />
+                    <div>
+                    <S.Edit onClick={() => setPatient(id)}>Edit</S.Edit>
+                    </div>
+                    
+                    <div>
+                        <S.Delete onClick={handleDelete}>Delete</S.Delete>
+                    </div>
                 </S.ButtonArea>
             </S.PatientCard>
     )

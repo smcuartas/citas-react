@@ -28,11 +28,14 @@ export const ButtonArea = styled.div`
     grid-template-columns: repeat(2,1fr);
     grid-gap: 8px;
     margin-top: 16px;
+
+    & div:last-child{
+        display:flex;
+        justify-content: flex-end;
+    }
 `
 
-export const Edit = styled.input`
-    width: 100%;
-    padding: 5px 15px;
+export const Edit = styled.button`
     color: white;
     border: 1px solid #57CFFF;
     background: #57CFFF;
@@ -41,6 +44,9 @@ export const Edit = styled.input`
     cursor: pointer;
     transition-duration: .3s;
     box-sizing: border-box;
+    width:fit-content;
+    padding:5px 35px;
+    font-size:16px;
 
     &:hover{
         border-color: black;
@@ -49,9 +55,7 @@ export const Edit = styled.input`
     }
 `
 
-export const Delete = styled.input`
-    width: 100%;
-    padding: 5px 15px;
+export const Delete = styled.button`
     color: white;
     border: 1px solid #8A0501;
     background: #8A0501;
@@ -60,6 +64,9 @@ export const Delete = styled.input`
     cursor: pointer;
     transition-duration: .3s;
     box-sizing: border-box;
+    width:fit-content;
+    padding:5px 35px;
+    font-size:16px;
 
     &:hover{
         border-color:black;
