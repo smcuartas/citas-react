@@ -226,7 +226,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
 
     h1{
         font-size:40px;
-        line-height:1.1;
+        line-height:1;
     }
 
     h2{
