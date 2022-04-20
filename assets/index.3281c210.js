@@ -233,7 +233,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
         font-size:24px;
     }
 
-    he3{
+    h3{
         font-size:18px;
     }
 
