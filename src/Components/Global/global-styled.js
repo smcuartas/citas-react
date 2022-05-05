@@ -31,13 +31,17 @@ export default createGlobalStyle`
 
     h1{
         font-size:40px;
+
+        @media(max-width:767px){
+            font-size:30px;
+        }
     }
 
     h2{
         font-size:24px;
     }
 
-    he3{
+    h3{
         font-size:18px;
     }
 

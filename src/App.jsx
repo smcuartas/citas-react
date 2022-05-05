@@ -7,8 +7,8 @@ import Patients from './Components/Patients/Patients'
 import GlobalCSS from './Components/Global/global-styled'
 
 function App() {
-  const [patients, setPatients] = useState([]);
-  const [patient, setPatient] = useState({});
+  const [patients, setPatients] = useState([])
+  const [patient, setPatient] = useState({})
 
   useEffect(() => {
     const getLocalStorage = () => {
@@ -24,7 +24,7 @@ function App() {
   }, [patients])
 
   const deletePatient = (id) => {
-    const updatedPatients = patients.filter( patient => patient.id !== id);
+    const updatedPatients = patients.filter((patient) => patient.id !== id)
     setPatients(updatedPatients)
   }
 
@@ -32,23 +32,20 @@ function App() {
     <>
       <GlobalCSS />
 
-      <Header
-        title = 'Vet Appointments'
-        subtitle = 'Patient Manager'
-      />
+      <Header title="Vet Appointments" subtitle="Patient Manager" />
 
       <div className="cols2">
         <Form
-          patients = {patients}
-          setPatients = {setPatients}
+          patients={patients}
+          setPatients={setPatients}
           patient={patient}
           setPatient={setPatient}
         />
 
         <Patients
-          patients = {patients}
-          setPatient = {setPatient}
-          deletePatient = {deletePatient}
+          patients={patients}
+          setPatient={setPatient}
+          deletePatient={deletePatient}
         />
       </div>
     </>
